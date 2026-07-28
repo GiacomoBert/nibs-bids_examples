@@ -3,7 +3,7 @@
 This document describes a structure for organizing **non-invasive brain stimulation (NIBS)**
 data in BIDS. It covers Transcranial Magnetic Stimulation (**TMS**), Transcranial Electrical
 Stimulation (**TES**, e.g. tDCS, tACS, tRNS, tPCS), Transcranial Ultrasound Stimulation (**TUS**),
-and Peripheral Nerve Stimulation (**PNS**). *However, the structure is also applicable to any form of NIBS including Transcranial Photobiomodulation (tPBM) and Transcranial Static Magnetic Field Stimulation (tSMS).*
+and Peripheral Nerve Stimulation (**PNS**). However, the structure is also applicable to any form of NIBS including Transcranial Photobiomodulation (tPBM) and Transcranial Static Magnetic Field Stimulation (tSMS).
 
 ---
 
