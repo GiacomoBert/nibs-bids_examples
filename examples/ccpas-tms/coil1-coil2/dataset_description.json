@@ -1,0 +1,9 @@
+{
+  "Name": "Example dataset: ccPAS, nibs_element_id = Coil_1|Coil_2",
+  "BIDSVersion": "1.11.0",
+  "DatasetType": "raw",
+  "License": "CC0",
+  "Authors": [
+    "NIBS-BIDS working group"
+  ]
+}

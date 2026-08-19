@@ -1,4 +1,4 @@
-# Example data set: tDCS with fMRI before and after (GB working copy)
+# Example data set: tDCS with fMRI before and after
 
 Single-subject offline tDCS study in the proposed NIBS-BIDS v6.3 structure (2026-06-16 decisions).
 Resting-state fMRI is acquired before and after a single tDCS block: fMRI -> tDCS -> fMRI. tDCS is

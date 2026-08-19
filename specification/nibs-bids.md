@@ -46,7 +46,7 @@ A row of `*_events.tsv` ties the two together by naming a temporal parameter set
 | Timing hierarchy | `pulse` / `train` / `repeat` terms | Generic, nestable **`pattern<index>`** layers |
 | Reusable stimulus templates | `StimulusSet` referenced by `stim_id` | Removed; the stimulus parameters live in `*_nibs.tsv` (`stimulus_*` plus `pattern<index>_*`) |
 | Device hardware | `CoilSet` / `ElectrodeSet` / `TransducerSet`, referenced by `coil_id` / `electrode_id` / `transducer_id` | Unified **`ElementSet`** (`ElementType`: coil/electrode/transducer) and **`StimulatorSet`**, referenced by `nibs_element_id` and `stimulator_id` |
-| Multi-element events | Multiple rows indexed by `event_part` | A single row using the **`|` delimiter** in `nibs_element_id` and `stimulus_intensity`, or one row per element |
+| Multi-element events | Multiple rows indexed by `event_part` | A single row using the **`\|` delimiter** in `nibs_element_id` and `stimulus_intensity`, or one row per element |
 | Spatial link | `target_id` column in `*_nibs.tsv` | `nibs_position_id` in `*_events.tsv`; `*_markers.tsv` also carries `nibs_element_id` |
 | What a position describes | Coordinates conflated the stimulation target and the element site | The **element position** is primary; the **target** is optional and secondary |
 | Element pose | Separate `coil_*` / `transducer_*` centres plus `normal_*`, `direction_*`, `beam_*` vectors | One **element centre** plus three **element axes**, from which the 4x4 pose matrix is assembled |
@@ -366,12 +366,12 @@ Multi-element montages are represented as multiple rows, one per element. The co
 | `element_zdir_x` | OPTIONAL | number | x component of the element z axis, which points from the element into the head. |
 | `element_zdir_y` | OPTIONAL | number | y component of the element z axis. |
 | `element_zdir_z` | OPTIONAL | number | z component of the element z axis. |
-| `element_distance` | OPTIONAL | number | Distance from the element surface to the scalp, for example the thickness of padding or hair. |
+| `element_distance` | RECOMMENDED | number | Physical distance from the element surface to the scalp, for example the thickness of padding, gel, or hair. This is a real, measurable quantity that affects the delivered dose, so it SHOULD be recorded whenever it is known, independently of whether neuronavigation was used. |
 | `target_x` | OPTIONAL | number | x coordinate of the intended target, for example a cortical site or an acoustic focus. |
 | `target_y` | OPTIONAL | number | y coordinate of the intended target. |
 | `target_z` | OPTIONAL | number | z coordinate of the intended target. |
 | `target_label` | OPTIONAL | string | Standardized label or anatomical name of the target. |
-| `peeling_depth` | OPTIONAL | number | Depth from the scalp or cortical surface to the target. |
+| `peeling_depth` | OPTIONAL | number | Depth from the scalp or cortical surface to the target, as reported by a neuronavigation system. It is specific to neuronavigation, is not produced by all systems, and is distinct from `element_distance`, which is the physical standoff of the element from the scalp. |
 | `efield_max_x` | OPTIONAL | number | x coordinate of the location of maximum electric field, when modelled. |
 | `efield_max_y` | OPTIONAL | number | y coordinate of the location of maximum electric field. |
 | `efield_max_z` | OPTIONAL | number | z coordinate of the location of maximum electric field. |

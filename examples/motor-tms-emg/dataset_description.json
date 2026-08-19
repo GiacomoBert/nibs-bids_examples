@@ -1,0 +1,9 @@
+{
+  "Name": "Example dataset: motor TMS-EMG (SICI)",
+  "BIDSVersion": "1.11.0",
+  "DatasetType": "raw",
+  "License": "CC0",
+  "Authors": [
+    "NIBS-BIDS working group"
+  ]
+}

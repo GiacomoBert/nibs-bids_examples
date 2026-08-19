@@ -19,16 +19,16 @@
 > Assessment events are concurrent and live in `eeg/` and `emg/` (linked from `nibs.json` via
 > `IntendedFor`); iTBS is standalone and its events live in `nibs/`.
 
-# Example data set: M1 plasticity — concurrent TMS-EEG-EMG with iTBS (GB working copy)
+# Example data set: M1 plasticity , concurrent TMS-EEG-EMG with iTBS
 
 Single-subject plasticity assessment in the proposed NIBS-BIDS v6.3 structure (2026-06-16 decisions
 applied). Concurrent TMS-EEG-EMG is recorded before and after a single iTBS intervention over left M1.
 
 ## Experiment details
 Three phases are distinguished by the `acq-` label on a single `task-rest`:
-- `acq-pre`  — single-pulse TMS to left M1 with concurrent EEG (TEPs) and EMG (MEPs from right FDI).
-- `acq-itbs` — intermittent theta-burst stimulation (600 pulses), delivered standalone.
-- `acq-post` — repeat of the `acq-pre` assessment, test intensity held fixed.
+- `acq-pre`  , single-pulse TMS to left M1 with concurrent EEG (TEPs) and EMG (MEPs from right FDI).
+- `acq-itbs` , intermittent theta-burst stimulation (600 pulses), delivered standalone.
+- `acq-post` , repeat of the `acq-pre` assessment, test intensity held fixed.
 
 rMT = 50 %MSO (assessment, 120% -> 60 %MSO); aMT = 40 %MSO (iTBS, 80% -> 32 %MSO).
 

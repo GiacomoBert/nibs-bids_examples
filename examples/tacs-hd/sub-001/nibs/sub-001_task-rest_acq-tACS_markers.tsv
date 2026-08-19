@@ -1,0 +1,6 @@
+nibs_position_id	nibs_element_id	position_label	position_description
+C3	E_center	C3	Centre electrode over left sensorimotor cortex (10-10 site C3)
+FC3	E_ring1	FC3	Return electrode of the 4x1 ring
+C1	E_ring2	C1	Return electrode of the 4x1 ring
+C5	E_ring3	C5	Return electrode of the 4x1 ring
+CP3	E_ring4	CP3	Return electrode of the 4x1 ring
