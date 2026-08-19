@@ -1,0 +1,2 @@
+nibs_event_id	nibs_type	stimulator_id	nibs_element_id	stimulus_shape	stimulus_intensity	stimulus_duration	frequency	starting_phase	intensity_reference	intensity_scaling
+tACS	tES	Starstim	E_center|E_ring1|E_ring2|E_ring3|E_ring4	Sinusoid	1|-0.25|-0.25|-0.25|-0.25	1200	10	0	absolute	absolute

@@ -1,5 +1,5 @@
 {
-  "NIBSDescription": "Single and paired pulse (SICI) protocol.",
+  "NIBSDescription": "Single- and paired-pulse (SICI) TMS over left M1 with concurrent EMG from the right first dorsal interosseous. Conditioning pulse dosed at 70% rMT; test pulse dosed to evoke a ~1 mV MEP.",
   "ConcurrentModalities": [
     "emg"
   ],
@@ -8,52 +8,122 @@
     "StimulatorID": "Magstim",
     "Manufacturer": "Magstim",
     "ManufacturerModelName": "BiStim^2",
-    "ManufacturerSerialNumber": "3234-00"
+    "ManufacturerSerialNumber": "3234-00",
+    "SoftwareVersion": "n/a"
   },
   "ElementSet": [
     {
       "ElementID": "Coil_1",
       "ElementType": "coil",
       "ModelName": "D70",
-      "SerialNumber": "4150-00"
-    },
-    {
-      "ElementID": "Coil_2",
-      "ElementType": "coil",
-      "ModelName": "D70",
-      "SerialNumber": "4150-00"
+      "SerialNumber": "4150-00",
+      "CoilShape": "figure-of-eight",
+      "CoilCooling": "passive",
+      "CoilDiameter": {
+        "Value": 70,
+        "Units": "mm",
+        "Description": "figure-of-eight wing diameter"
+      }
     }
   ],
-  "stimulus_shape": {
-    "LongName": "Shape of stimulus",
-    "Description": "Description of the stimulus shape",
+  "IntensitySet": [
+    {
+      "IntensityID": "rMT",
+      "Value": 50,
+      "Units": "% Maximum Stimulator Output",
+      "Type": "resting_motor",
+      "Criterion": "MEP amplitude >= 50 uV in at least 5 of 10 consecutive trials",
+      "Algorithm": "relative-frequency (Rossini-Rothwell)",
+      "MeasurementMethod": "EMG MEP from right first dorsal interosseous"
+    },
+    {
+      "IntensityID": "1mV",
+      "Value": 58,
+      "Units": "% Maximum Stimulator Output",
+      "Type": "target_MEP",
+      "Criterion": "stimulator output evoking a ~1 mV peak-to-peak MEP",
+      "Algorithm": "manual titration",
+      "MeasurementMethod": "EMG MEP from right first dorsal interosseous"
+    }
+  ],
+  "nibs_event_id": {
+    "LongName": "Stimulation event type",
+    "Description": "Identifier of a stimulation event type with a unique parameter set. Linked to nibs_event_id in *_events.tsv. MUST be unique within this file."
+  },
+  "nibs_type": {
+    "LongName": "Stimulation modality",
+    "Description": "Non-invasive brain stimulation modality.",
     "Levels": {
-      "Monophasic": "Monophasic pulse shape as per stimulator setting"
+      "TMS": "Transcranial magnetic stimulation"
+    }
+  },
+  "stimulator_id": {
+    "LongName": "Stimulator identifier",
+    "Description": "Device generating the waveform. Links to StimulatorSet.StimulatorID."
+  },
+  "nibs_element_id": {
+    "LongName": "Element identifier",
+    "Description": "Element delivering stimulation. Links to ElementSet.ElementID."
+  },
+  "stimulus_shape": {
+    "LongName": "Stimulus shape",
+    "Description": "Waveform shape of the base stimulus.",
+    "Levels": {
+      "Monophasic": "Monophasic pulse as per stimulator setting"
+    }
+  },
+  "first_inflection": {
+    "LongName": "First current inflection",
+    "Description": "Direction of the first deflection of the induced current.",
+    "Levels": {
+      "rising": "Normal current direction",
+      "descending": "Reverse current direction"
+    }
+  },
+  "current_direction": {
+    "LongName": "Coil current direction",
+    "Description": "Direction of current flow in the coil winding, read with the coil in the calibration-block orientation (stimulating face away from the viewer, top face toward the viewer, handle or leading edge pointing away). cl and co apply to circular coils; cl-co and co-cl apply to figure-of-eight coils and name the left wing then the right wing.",
+    "Levels": {
+      "cl": "Circular coil, single winding, current clockwise",
+      "co": "Circular coil, single winding, current counterclockwise",
+      "cl-co": "Figure-of-eight coil, left wing clockwise, right wing counterclockwise",
+      "co-cl": "Figure-of-eight coil, left wing counterclockwise, right wing clockwise",
+      "other": "Coil geometry not covered by cl/co/cl-co/co-cl; the actual current flow is described in this text"
     }
   },
   "stimulus_intensity": {
-    "LongName": "Stimulation intensity",
-    "Description": "Stimulator intensity for single or multiple pulses (if separated by a delimiter). Note that if seperated, number of values MUST equal patter1_count.",
+    "LongName": "Stimulus intensity",
+    "Description": "Delivered amplitude of the base stimulus. n/a when intensity varies between pulses (values then in pattern1_intensity).",
     "Units": "% Maximum Stimulator Output"
   },
   "stimulus_duration": {
     "LongName": "Stimulus duration",
-    "Description": "Time during which a contiguous non-zero current is applied through the coil",
-    "Units": "Microseconds"
+    "Description": "Pulse width (contiguous non-zero current through the coil).",
+    "Units": "microseconds"
   },
   "pattern1_count": {
-    "LongName": "Number of stimuli in repeating pattern",
-    "Description": "Total number stimuli in repeating pattern"
+    "LongName": "Stimuli in pattern1",
+    "Description": "Number of base stimuli in one pattern1 unit."
   },
   "pattern1_interval": {
-    "LongName": "Interval between stimuli in pattern1",
-    "Description": "Interval from the start of the first stimulus to the start of the proceeding stimulus",
-    "Units": "Milliseconds"
+    "LongName": "Interval in pattern1",
+    "Description": "Onset-to-onset interval between consecutive base stimuli.",
+    "Units": "milliseconds"
   },
   "pattern1_intensity": {
-    "LongName": "Changing stimulation intensity for multiple pulses",
-    "Description": "Stimulator intensity for multiple pulses with changing intensity  (separated by a delimiter). Note that if seperated, number of values MUST equal patter1_count.",
+    "LongName": "Per-pulse intensity",
+    "Description": "Delivered amplitude of each successive stimulus in pattern1. Number of values equals pattern1_count.",
     "Units": "% Maximum Stimulator Output",
+    "Delimiter": "|"
+  },
+  "intensity_reference": {
+    "LongName": "Intensity reference",
+    "Description": "Anchor used to set the intensity. Links to IntensitySet.IntensityID. Closed vocabulary (rMT, aMT, 1mV, e-field, absolute). Aligned to pattern1_intensity when delimited.",
+    "Delimiter": "|"
+  },
+  "intensity_scaling": {
+    "LongName": "Intensity scaling",
+    "Description": "Multiplier applied to the reference value, or 'absolute' for a directly specified value. Aligned to intensity_reference.",
     "Delimiter": "|"
   }
 }

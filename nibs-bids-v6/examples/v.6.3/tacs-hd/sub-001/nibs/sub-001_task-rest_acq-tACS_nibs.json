@@ -1,0 +1,29 @@
+{
+  "NIBSDescription": "10 Hz tACS over left sensorimotor cortex for 20 min, delivered through a 4x1 high-definition ring montage. Centre electrode over C3 at 1 mA amplitude; four return electrodes (FC3, C1, C5, CP3) at -0.25 mA each. Delivered offline.",
+  "ConcurrentModalities": ["none"],
+  "StimulatorSet": {
+    "StimulatorID": "Starstim",
+    "Manufacturer": "Neuroelectrics",
+    "ManufacturerModelName": "Starstim 8",
+    "ManufacturerSerialNumber": "NE-0001",
+    "SoftwareVersion": "NIC2"
+  },
+  "ElementSet": [
+    { "ElementID": "E_center", "ElementType": "electrode", "ElectrodeRole": "other", "Shape": "circular", "ElectrodeSize": { "Value": 1.0, "Units": "cm", "Description": "radius of the Ag/AgCl HD electrode" }, "Material": "Ag/AgCl", "ElectrodeContactMedium": "gel", "ElectrodePreparation": "Skin cleaned with alcohol; conductive gel applied through the HD holder." },
+    { "ElementID": "E_ring1", "ElementType": "electrode", "ElectrodeRole": "return", "Shape": "circular", "ElectrodeSize": { "Value": 1.0, "Units": "cm" }, "Material": "Ag/AgCl", "ElectrodeContactMedium": "gel" },
+    { "ElementID": "E_ring2", "ElementType": "electrode", "ElectrodeRole": "return", "Shape": "circular", "ElectrodeSize": { "Value": 1.0, "Units": "cm" }, "Material": "Ag/AgCl", "ElectrodeContactMedium": "gel" },
+    { "ElementID": "E_ring3", "ElementType": "electrode", "ElectrodeRole": "return", "Shape": "circular", "ElectrodeSize": { "Value": 1.0, "Units": "cm" }, "Material": "Ag/AgCl", "ElectrodeContactMedium": "gel" },
+    { "ElementID": "E_ring4", "ElementType": "electrode", "ElectrodeRole": "return", "Shape": "circular", "ElectrodeSize": { "Value": 1.0, "Units": "cm" }, "Material": "Ag/AgCl", "ElectrodeContactMedium": "gel" }
+  ],
+  "nibs_event_id": { "LongName": "Stimulation event type", "Description": "Identifier of a stimulation parameter set. Referenced from *_events.tsv. MUST be unique within the file." },
+  "nibs_type": { "LongName": "Stimulation modality", "Description": "Non-invasive brain stimulation modality.", "Levels": { "tES": "Transcranial electrical stimulation" } },
+  "stimulator_id": { "LongName": "Stimulator identifier", "Description": "Device that generates the waveform. Links to StimulatorSet.StimulatorID." },
+  "nibs_element_id": { "LongName": "Element identifier(s)", "Description": "Electrodes in the montage, in order. Links to ElementSet.ElementID.", "Delimiter": "|" },
+  "stimulus_shape": { "LongName": "Stimulus shape", "Description": "Waveform shape of the base stimulus.", "Levels": { "Sinusoid": "Sinusoidal alternating current" } },
+  "stimulus_intensity": { "LongName": "Stimulus intensity", "Description": "Delivered current amplitude per electrode, in the same order as nibs_element_id. For tES the values sum to 0.", "Units": "mA", "Delimiter": "|" },
+  "stimulus_duration": { "LongName": "Stimulus duration", "Description": "Total duration of the tACS block.", "Units": "second" },
+  "frequency": { "LongName": "Oscillation frequency", "Description": "Frequency of the sinusoidal current.", "Units": "Hz" },
+  "starting_phase": { "LongName": "Starting phase", "Description": "Phase of the sinusoid at onset.", "Units": "degree" },
+  "intensity_reference": { "LongName": "Intensity reference", "Description": "Anchor used to set the intensity. 'absolute' means the value is specified directly. Closed vocabulary (rMT, aMT, 1mV, e-field, absolute)." },
+  "intensity_scaling": { "LongName": "Intensity scaling", "Description": "Multiplier applied to the reference value, or 'absolute' for a directly specified value." }
+}

@@ -1,0 +1,7 @@
+{
+  "Name": "Example dataset: tACS via a 4x1 HD montage",
+  "BIDSVersion": "1.11.0",
+  "DatasetType": "raw",
+  "License": "CC0",
+  "Authors": ["NIBS-BIDS working group"]
+}

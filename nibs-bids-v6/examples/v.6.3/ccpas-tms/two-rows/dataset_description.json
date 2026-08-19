@@ -1,5 +1,5 @@
 {
-  "Name": "Example dataset: motor TMS-EMG (SICI)",
+  "Name": "Example dataset: ccPAS, two rows (one per coil)",
   "BIDSVersion": "1.11.0",
   "DatasetType": "raw",
   "License": "CC0",

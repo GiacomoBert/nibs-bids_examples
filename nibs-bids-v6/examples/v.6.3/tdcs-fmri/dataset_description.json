@@ -1,5 +1,5 @@
 {
-  "Name": "Example dataset: motor TMS-EMG (SICI)",
+  "Name": "Example dataset: tDCS with fMRI before/after",
   "BIDSVersion": "1.11.0",
   "DatasetType": "raw",
   "License": "CC0",

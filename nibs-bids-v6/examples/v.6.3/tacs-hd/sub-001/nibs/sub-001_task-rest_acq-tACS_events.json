@@ -1,0 +1,6 @@
+{
+  "onset": { "LongName": "Event onset", "Description": "Onset of the tACS block.", "Units": "second" },
+  "duration": { "LongName": "Event duration", "Description": "Duration of the tACS block.", "Units": "second" },
+  "nibs_event_id": { "LongName": "Stimulation type", "Description": "References nibs_event_id in *_nibs.tsv.", "Levels": { "tACS": "10 Hz transcranial alternating current stimulation, 4x1 HD montage" } },
+  "nibs_position_id": { "LongName": "Stimulation positions", "Description": "References nibs_position_id in *_markers.tsv, one per electrode in the same order as nibs_element_id.", "Delimiter": "|" }
+}

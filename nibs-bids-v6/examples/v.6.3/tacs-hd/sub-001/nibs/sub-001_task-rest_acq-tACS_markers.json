@@ -1,0 +1,6 @@
+{
+  "nibs_position_id": { "LongName": "Position identifier", "Description": "Identifier of one electrode placement (one row). Referenced from nibs_position_id in *_events.tsv. MUST be unique within this file." },
+  "nibs_element_id": { "LongName": "Element identifier", "Description": "Electrode placed at this position. Links to nibs_element_id in *_nibs.tsv." },
+  "position_label": { "LongName": "Position label", "Description": "Standardized 10-10 site label." },
+  "position_description": { "LongName": "Position description", "Description": "Free-text description of the placement." }
+}
