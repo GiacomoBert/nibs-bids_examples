@@ -8,13 +8,15 @@
     "bids::sub-001/eeg/sub-001_task-rest_acq-post_events.tsv",
     "bids::sub-001/emg/sub-001_task-rest_acq-post_events.tsv"
   ],
-  "StimulatorSet": {
-    "StimulatorID": "MagVenture",
-    "Manufacturer": "MagVenture",
-    "ManufacturerModelName": "MagPro X100",
-    "ManufacturerSerialNumber": "X100-0001",
-    "SoftwareVersion": "n/a"
-  },
+  "StimulatorSet": [
+    {
+      "StimulatorID": "MagVenture",
+      "Manufacturer": "MagVenture",
+      "ManufacturersModelName": "MagPro X100",
+      "DeviceSerialNumber": "X100-0001",
+      "SoftwareVersions": "n/a"
+    }
+  ],
   "ElementSet": [
     {
       "ElementID": "Coil_1",
@@ -35,7 +37,7 @@
       "IntensityID": "rMT",
       "Value": 50,
       "Units": "% Maximum Stimulator Output",
-      "Type": "resting_motor",
+      "IntensityType": "resting_motor",
       "Criterion": "MEP amplitude >= 50 uV in at least 5 of 10 consecutive trials",
       "Algorithm": "relative-frequency (Rossini-Rothwell)",
       "MeasurementMethod": "EMG MEP from right first dorsal interosseous"
@@ -94,7 +96,7 @@
   "stimulus_duration": {
     "LongName": "Stimulus duration",
     "Description": "Pulse width (contiguous non-zero current through the coil).",
-    "Units": "microseconds"
+    "Units": "us"
   },
   "intensity_reference": {
     "LongName": "Intensity reference",

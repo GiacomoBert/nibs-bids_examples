@@ -3,13 +3,15 @@
   "ConcurrentModalities": [
     "none"
   ],
-  "StimulatorSet": {
-    "StimulatorID": "MagVenture",
-    "Manufacturer": "MagVenture",
-    "ManufacturerModelName": "MagPro X100",
-    "ManufacturerSerialNumber": "X100-0001",
-    "SoftwareVersion": "n/a"
-  },
+  "StimulatorSet": [
+    {
+      "StimulatorID": "MagVenture",
+      "Manufacturer": "MagVenture",
+      "ManufacturersModelName": "MagPro X100",
+      "DeviceSerialNumber": "X100-0001",
+      "SoftwareVersions": "n/a"
+    }
+  ],
   "ElementSet": [
     {
       "ElementID": "Coil_1",
@@ -45,7 +47,7 @@
       "IntensityID": "rMT",
       "Value": 50,
       "Units": "% Maximum Stimulator Output",
-      "Type": "resting_motor",
+      "IntensityType": "resting_motor",
       "Criterion": "MEP >= 50 uV in >=5 of 10 trials",
       "Algorithm": "relative-frequency (Rossini-Rothwell)",
       "MeasurementMethod": "EMG MEP from right first dorsal interosseous"
@@ -54,20 +56,12 @@
       "IntensityID": "1mV",
       "Value": 58,
       "Units": "% Maximum Stimulator Output",
-      "Type": "target_MEP",
+      "IntensityType": "target_MEP",
       "Criterion": "output evoking a ~1 mV MEP",
       "Algorithm": "manual titration",
       "MeasurementMethod": "EMG MEP from right first dorsal interosseous"
     }
   ],
-  "NavigationSystem": {
-    "Navigation": true,
-    "NavigationHardwareType": "optical_tracking",
-    "NavigationModelName": "Localite TMS Navigator",
-    "NavigationSoftwareVersion": "3.0.48",
-    "NavigationHardwareSerialNumber": "LOC-0001",
-    "NavigationNotes": "Frameless stereotaxy; coils tracked optically and co-registered to the individual MRI."
-  },
   "nibs_event_id": {
     "LongName": "Stimulation event type",
     "Description": "Identifier of a stimulation event type (one per coil). Linked to nibs_event_id in *_events.tsv. MUST be unique within this file."
@@ -121,16 +115,17 @@
   "stimulus_duration": {
     "LongName": "Stimulus duration",
     "Description": "Pulse width.",
-    "Units": "microseconds"
+    "Units": "us"
   },
   "pattern1_count": {
     "LongName": "Repeats",
-    "Description": "Number of times this coil's pulse is delivered (one per pair)."
+    "Description": "Number of times this coil's pulse is delivered (one per pair).",
+    "Format": "number"
   },
   "pattern1_interval": {
     "LongName": "Inter-pair interval",
     "Description": "Onset-to-onset interval between repeats (0.2 Hz).",
-    "Units": "milliseconds"
+    "Units": "ms"
   },
   "intensity_reference": {
     "LongName": "Intensity reference",

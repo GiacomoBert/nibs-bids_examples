@@ -32,39 +32,48 @@
   },
   "element_xdir_x": {
     "LongName": "Element xdir x",
-    "Description": "x component of the element x axis. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "x component of the element x axis. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "element_xdir_y": {
     "LongName": "Element xdir y",
-    "Description": "y component of the element x axis. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "y component of the element x axis. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "element_xdir_z": {
     "LongName": "Element xdir z",
-    "Description": "z component of the element x axis. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "z component of the element x axis. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "element_ydir_x": {
     "LongName": "Element ydir x",
-    "Description": "x component of the element y axis, running along the handle. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "x component of the element y axis, running along the handle. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "element_ydir_y": {
     "LongName": "Element ydir y",
-    "Description": "y component of the element y axis, running along the handle. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "y component of the element y axis, running along the handle. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "element_ydir_z": {
     "LongName": "Element ydir z",
-    "Description": "z component of the element y axis, running along the handle. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "z component of the element y axis, running along the handle. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "element_zdir_x": {
     "LongName": "Element zdir x",
-    "Description": "x component of the element z axis, pointing from the element into the head. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "x component of the element z axis, pointing from the element into the head. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "element_zdir_y": {
     "LongName": "Element zdir y",
-    "Description": "y component of the element z axis, pointing from the element into the head. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "y component of the element z axis, pointing from the element into the head. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "element_zdir_z": {
     "LongName": "Element zdir z",
-    "Description": "z component of the element z axis, pointing from the element into the head. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir)."
+    "Description": "z component of the element z axis, pointing from the element into the head. Unit vector; the three axes are mutually orthogonal and right-handed (xdir = ydir x zdir).",
+    "Format": "number"
   },
   "target_x": {
     "LongName": "Target x",

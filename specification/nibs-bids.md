@@ -82,7 +82,7 @@ a clearly labelled place of its own reflects how it is used in practice.
 sub-<label>/
 └── [ses-<label>/]
     └── nibs/
-        ├── sub-<label>[_ses-<label>]_task-<label>_coordsystem.json
+        ├── sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_coordsystem.json
         ├── sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_nibs.tsv
         ├── sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_nibs.json
         ├── sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_markers.tsv
@@ -142,6 +142,10 @@ threshold, together with its measured value.
 the corresponding sidecar, for example `{"nibs_element_id": {"Delimiter": "|"}}`. The values in
 `|`-delimited columns of the same row are aligned position by position.
 
+**Format rule.** A numeric column that carries no units, such as a count or a direction cosine, MUST
+declare `"Format": "number"` in the corresponding sidecar. Without it the column type is inferred from
+the presence of `Units`, and a unitless numeric column is read as text.
+
 To read a dataset, take a row of `*_events.tsv`, follow its `nibs_event_id` to the temporal parameters in
 `*_nibs.tsv`, and follow its `nibs_position_id` to the placement or placements in `*_markers.tsv`.
 
@@ -189,7 +193,8 @@ illustrative and are not a limit on compatibility.
 Each row represents one stimulation parameter set, identified by `nibs_event_id`. A row may describe a
 single stimulus, or repeating and nested stimuli described parametrically with the `pattern<index>_*`
 fields. Numeric fields are typed `number`, and units for every numeric column MUST be declared in
-`*_nibs.json`.
+`*_nibs.json`. Units are written as unit symbols following the BIDS units convention, for example `s`,
+`ms`, `us`, `Hz`, `mA`, `mm`, and `deg`, rather than as words.
 
 One row holds a complete protocol, however long or repetitive it is. Rather than writing one row for
 every delivered stimulus, repetition over time is described with the `pattern<index>` fields, which
@@ -296,6 +301,8 @@ arbitrary depth without new field names.
 Consistency rules, evaluated with all times in seconds, are `pattern<index>_frequency = 1 /
 pattern<index>_interval` and `pattern<index>_duration = pattern<index>_count × pattern<index>_interval`.
 A layer SHOULD provide `count` plus one of `interval` or `frequency`, from which `duration` is derivable.
+The number of layers is not limited by this specification, but validators enumerate a finite depth,
+currently four, so deeper layers MUST be described in the sidecar like any other added column.
 Any two of `count`, `interval` or `frequency`, and `duration` are sufficient, and the third can be
 derived. Per-column units are free and declared in the JSON, but the two equations assume seconds, so
 tools that convert between layers should normalize to seconds first.
@@ -438,22 +445,22 @@ A BIDS JSON sidecar that describes each `*_nibs.tsv` column (`LongName`, `Descri
 | `InstitutionName` | OPTIONAL | string | Institution where the stimulation was performed. |
 | `InstitutionAddress` | OPTIONAL | string | Address of the institution. |
 | `InstitutionalDepartmentName` | OPTIONAL | string | Department within the institution. |
-| `StimulatorSet` | RECOMMENDED | object | Description of the waveform generator or generators. See below. |
+| `StimulatorSet` | RECOMMENDED | array | Description of the waveform generators. See below. |
 | `ElementSet` | RECOMMENDED | array | Description of the stimulation elements. See below. |
 | `IntensitySet` | OPTIONAL | array | Description of the intensity references. See below. |
-| `NavigationSystem` | OPTIONAL | object | Description of the navigation or positioning system. See below. |
 
 ### `StimulatorSet`
 
-Describes the device or devices that generate the stimulus waveform. Referenced from `stimulator_id`.
+An array describing the devices that generate the stimulus waveform. Each entry is referenced from
+`stimulator_id` through `StimulatorID`, in the same way as `ElementSet` and `IntensitySet`.
 
 | Field | Requirement | Type | Description |
 |---|---|---|---|
 | `StimulatorID` | REQUIRED | string | Unique identifier, referenced from `stimulator_id`. |
 | `Manufacturer` | RECOMMENDED | string | Manufacturer name. |
-| `ManufacturerModelName` | RECOMMENDED | string | Model name or number. |
-| `ManufacturerSerialNumber` | OPTIONAL | string | Serial number. |
-| `SoftwareVersion` | OPTIONAL | string | Control-software version. |
+| `ManufacturersModelName` | RECOMMENDED | string | Model name or number. |
+| `DeviceSerialNumber` | OPTIONAL | string | Serial number. |
+| `SoftwareVersions` | OPTIONAL | string | Control-software version. |
 
 ### `ElementSet`
 
@@ -506,24 +513,10 @@ reference. `absolute` is a reserved value for directly specified intensities and
 | `IntensityID` | REQUIRED | string | Unique identifier, referenced from `intensity_reference`. |
 | `Value` | REQUIRED | number | Measured value of the reference, for example the resting motor threshold. |
 | `Units` | REQUIRED | string | Units of `Value`, for example `% Maximum Stimulator Output` or `mA`. |
-| `Type` | RECOMMENDED | string | Reference endpoint, for example `resting_motor`, `active_motor`, `phosphene`, `sensation`, `pain`. |
+| `IntensityType` | RECOMMENDED | string | Reference endpoint, for example `resting_motor`, `active_motor`, `phosphene`, `sensation`, `pain`. |
 | `Criterion` | RECOMMENDED | string | Criterion defining the reference, for example "1 mV MEP" or "perceptible phosphene". |
 | `Algorithm` | OPTIONAL | string | Estimation procedure, for example "5/10", "PEST", or a staircase. |
 | `MeasurementMethod` | OPTIONAL | string | Modality used to assess the response, for example EMG MEP or visual report. |
-
-### `NavigationSystem`
-
-Describes the navigation, tracking, or robotic positioning system. RECOMMENDED whenever coordinates are
-given in `*_markers.tsv`.
-
-| Field | Requirement | Type | Description |
-|---|---|---|---|
-| `Navigation` | REQUIRED | boolean | Whether a navigation, tracking, or positioning system was used. |
-| `NavigationHardwareType` | RECOMMENDED | string | For example `optical_tracking`, `robot`, `cobot`, `mechanical_arm`. |
-| `NavigationModelName` | RECOMMENDED | string | Vendor or model. |
-| `NavigationSoftwareVersion` | OPTIONAL | string | Software version. |
-| `NavigationHardwareSerialNumber` | OPTIONAL | string | Serial number or identifier. |
-| `NavigationNotes` | OPTIONAL | string | Setup notes, for example camera type or calibration procedure. |
 
 ---
 
@@ -539,6 +532,7 @@ the `_T1w.json` file that accompanies it.
 | `NIBSCoordinateSystem` | REQUIRED | string | Coordinate system used for the positions, for example `IndividualMRI`, `MNI152NLin2009cAsym`, or `CapTrak`. |
 | `NIBSCoordinateUnits` | REQUIRED | string | Units of the coordinates, typically `mm`. |
 | `NIBSCoordinateSystemDescription` | RECOMMENDED | string | How the coordinate system was defined, including the registration method and what the coordinates represent. |
+| `NavigationSystem` | OPTIONAL | object | Description of the navigation or positioning system. See below. |
 | `IntendedFor` | RECOMMENDED | string | BIDS URI to the anatomical file the coordinate system refers to, for example `bids::sub-01/anat/sub-01_T1w.nii.gz`. |
 | `FiducialsDescription` | OPTIONAL | string | How the fiducials were placed relative to anatomical landmarks and how their positions were measured. |
 | `FiducialsCoordinates` | OPTIONAL | object | Labels and 3D positions of the fiducials, each an array of x, y, z in that order. |
@@ -567,6 +561,20 @@ the `_T1w.json` file that accompanies it.
 | `TransducerRmsDeviation` | OPTIONAL | number | (TUS) Deviation of the transducer position or orientation from the planned placement. |
 | `TransducerRmsDeviationUnits` | OPTIONAL | string | (TUS) Units for the deviation. |
 | `TransducerRmsDeviationDescription` | OPTIONAL | string | (TUS) How the deviation was computed and by which method. |
+
+### `NavigationSystem`
+
+Describes the navigation, tracking, or robotic positioning system. RECOMMENDED whenever coordinates are
+given in `*_markers.tsv`.
+
+| Field | Requirement | Type | Description |
+|---|---|---|---|
+| `Navigation` | REQUIRED | boolean | Whether a navigation, tracking, or positioning system was used. |
+| `NavigationHardwareType` | RECOMMENDED | string | For example `optical_tracking`, `robot`, `cobot`, `mechanical_arm`. |
+| `NavigationModelName` | RECOMMENDED | string | Vendor or model. |
+| `NavigationSoftwareVersion` | OPTIONAL | string | Software version. |
+| `NavigationHardwareSerialNumber` | OPTIONAL | string | Serial number or identifier. |
+| `NavigationNotes` | OPTIONAL | string | Setup notes, for example camera type or calibration procedure. |
 
 ---
 
@@ -605,7 +613,7 @@ sub-<label>/
 ## Example datasets
 
 Worked examples that exercise the structure are maintained alongside this specification at
-https://github.com/nigelrogasch/nibs-bids/tree/master/nibs-bids-v6/examples/v.6.3. They cover the main
+https://github.com/nigelrogasch/nibs-bids/tree/master/examples. They cover the main
 use cases:
 
 - Single- and paired-pulse TMS-EMG (SICI), including intensity references for the conditioning and test
@@ -642,6 +650,30 @@ use cases:
 - Prefix the cross-file linkage keys with `nibs_` (`nibs_event_id`, `nibs_position_id`,
   `nibs_element_id`).
 - Type numeric fields as `number` rather than `integer`, and declare units per column in `*_nibs.json`.
+
+---
+
+## bids-validator issues and fixes
+
+This specification was encoded as a BIDS schema and the example datasets were validated against it
+with a test build of the BIDS validator. The table records what that exercise found and what was done
+about it. Entries with no change are kept so that the reasoning is not lost.
+
+| Issue | Fix | Date |
+|---|---|---|
+| `ManufacturerModelName`, `ManufacturerSerialNumber` and `SoftwareVersion` are near misses of existing BIDS metadata keys, which share a single global namespace. | Renamed to `ManufacturersModelName`, `DeviceSerialNumber` and `SoftwareVersions`. | 2026-08-24 |
+| `StimulatorSet` was typed `object` while `ElementSet` and `IntensitySet` are arrays, so a dataset with two stimulators could not be expressed. | `StimulatorSet` is now an array whose entries are referenced through `StimulatorID`. | 2026-08-24 |
+| `markers` is already a BIDS suffix, used by MEG for sensor coil positions. | No change. The datatype distinguishes the two and the validator accepts it. Recorded so the point can be answered if it is raised in review. | 2026-08-24 |
+| `pattern<index>_*` has no wildcard mechanism in the BIDS schema, so a validator must enumerate a fixed depth. | Stated that validators enumerate a finite depth, currently four, and that deeper layers are declared in the sidecar. | 2026-08-24 |
+| A numeric column with no `Units` entry is read as text by the validator. This affected `pattern<index>_count` and the nine `element_<a>dir_<c>` columns. | Added the Format rule requiring `"Format": "number"` on unitless numeric columns. | 2026-08-24 |
+| The validator applies `Levels` to a whole cell, so a `|`-delimited column could not carry a vocabulary. `co-cl\|co-cl` was rejected although each value is a declared level. | No change here. Handled in the BEP037 test validator, which splits on the declared `Delimiter` before checking type, vocabulary and bounds. An upstream request to bids-validator is pending. | 2026-08-24 |
+| `intensity_reference` is defined both as a closed vocabulary and as a reference to `IntensitySet.IntensityID`. A custom reference name cannot satisfy both. | No change for now. The closed vocabulary is retained and the conflict is an open question for the working group. | 2026-08-24 |
+| `Type` inside `IntensitySet` collides with the BIDS metadata key `Type`, which identifies a mask. | Renamed to `IntensityType`. | 2026-08-24 |
+| Units were written as words, for example "second" and "microseconds", rather than as unit symbols. | Stated that units are written as unit symbols. The example datasets were updated to `s`, `ms`, `us` and `deg`. | 2026-08-24 |
+| The filename template omitted the optional entities on `*_coordsystem.json`, although the ccPAS examples use `acq-`. | The template now shows `[_acq-<label>][_run-<index>]` on the `*_coordsystem.json` line. | 2026-08-24 |
+| `NavigationSystem` was a field of `*_nibs.json` although its stated condition depends on the contents of `*_markers.tsv`. | Moved to `*_coordsystem.json`, with the rest of the spatial context. | 2026-08-24 |
+| The Example datasets section linked to the path used before the repository was reorganised. | Link updated to `examples/` at the repository root. | 2026-08-24 |
+| The element pose requirements, that the axes are unit vectors and mutually orthogonal, had never been checked against the example data. | No change. Both are now enforced by the validator and the ccPAS poses satisfy them. | 2026-08-24 |
 
 ---
 

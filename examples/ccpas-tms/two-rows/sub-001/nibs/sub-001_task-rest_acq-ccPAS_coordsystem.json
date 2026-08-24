@@ -1,5 +1,13 @@
 {
   "NIBSCoordinateSystem": "MNI152NLin2009cAsym",
   "NIBSCoordinateUnits": "mm",
-  "NIBSCoordinateSystemDescription": "Element placements and targets were defined with frameless neuronavigation and are reported in standard MNI152NLin2009cAsym space. element_centre_x/y/z give the centre of each coil on the head, the element_xdir/ydir/zdir columns give its axes, and target_x/y/z give the intended cortical target."
+  "NIBSCoordinateSystemDescription": "Element placements and targets were defined with frameless neuronavigation and are reported in standard MNI152NLin2009cAsym space. element_centre_x/y/z give the centre of each coil on the head, the element_xdir/ydir/zdir columns give its axes, and target_x/y/z give the intended cortical target.",
+  "NavigationSystem": {
+    "Navigation": true,
+    "NavigationHardwareType": "optical_tracking",
+    "NavigationModelName": "Localite TMS Navigator",
+    "NavigationSoftwareVersion": "3.0.48",
+    "NavigationHardwareSerialNumber": "LOC-0001",
+    "NavigationNotes": "Frameless stereotaxy; coils tracked optically and co-registered to the individual MRI."
+  }
 }
