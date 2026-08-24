@@ -37,4 +37,4 @@ rMT = 50 %MSO (assessment, 120% -> 60 %MSO); aMT = 40 %MSO (iTBS, 80% -> 32 %MSO
 - `nibs/*_markers.tsv` / `.json`: stimulation position(s).
 - `eeg/`, `emg/`: concurrent recordings and their `*_events.tsv` (`nibs_event_id`, `nibs_position_id`).
 - `nibs/*_events.tsv`: standalone iTBS timeline.
-- `*_eeg.set`, `*_emg.mat`: empty placeholders, demonstration only.
+- `*_eeg.set`, `*_emg.edf`: empty placeholders, demonstration only.
