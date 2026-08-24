@@ -5,6 +5,5 @@
   "ManufacturerModelName": "MAGNETOM Prisma",
   "MagneticFieldStrength": 3,
   "RepetitionTime": 2.0,
-  "EchoTime": 0.03,
-  "SliceTiming": "n/a"
+  "EchoTime": 0.03
 }

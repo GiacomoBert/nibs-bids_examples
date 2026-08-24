@@ -26,4 +26,4 @@ both recorded in the `IntensitySet` block of `*_nibs.json`. The conditioning pul
 - `nibs/*_nibs.tsv` and `.json`: temporal parameters, `StimulatorSet`, `ElementSet`, `IntensitySet`.
 - `nibs/*_markers.tsv` and `.json`: coil placement.
 - `emg/*_events.tsv` and `.json`: timeline (`nibs_event_id`, `nibs_position_id`).
-- `emg/*_emg.mat`: empty placeholder, included for demonstration only.
+- `emg/*_emg.edf`: empty placeholder, included for demonstration only.
