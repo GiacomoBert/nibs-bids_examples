@@ -3,13 +3,15 @@
   "ConcurrentModalities": [
     "none"
   ],
-  "StimulatorSet": {
-    "StimulatorID": "MagVenture",
-    "Manufacturer": "MagVenture",
-    "ManufacturerModelName": "MagPro X100",
-    "ManufacturerSerialNumber": "X100-0001",
-    "SoftwareVersion": "n/a"
-  },
+  "StimulatorSet": [
+    {
+      "StimulatorID": "MagVenture",
+      "Manufacturer": "MagVenture",
+      "ManufacturersModelName": "MagPro X100",
+      "DeviceSerialNumber": "X100-0001",
+      "SoftwareVersions": "n/a"
+    }
+  ],
   "ElementSet": [
     {
       "ElementID": "Coil_1",
@@ -30,7 +32,7 @@
       "IntensityID": "aMT",
       "Value": 40,
       "Units": "% Maximum Stimulator Output",
-      "Type": "active_motor",
+      "IntensityType": "active_motor",
       "Criterion": "MEP amplitude >= 200 uV in at least 5 of 10 trials during ~20% maximal voluntary contraction",
       "Algorithm": "relative-frequency (Rossini-Rothwell)",
       "MeasurementMethod": "EMG MEP from right first dorsal interosseous during contraction"
@@ -89,34 +91,37 @@
   "stimulus_duration": {
     "LongName": "Stimulus duration",
     "Description": "Pulse width (contiguous non-zero current through the coil).",
-    "Units": "microseconds"
+    "Units": "us"
   },
   "pattern1_count": {
     "LongName": "Pulses per burst",
-    "Description": "Number of base stimuli in one pattern1 unit (the burst)."
+    "Description": "Number of base stimuli in one pattern1 unit (the burst).",
+    "Format": "number"
   },
   "pattern1_interval": {
     "LongName": "Intra-burst interval",
     "Description": "Onset-to-onset interval between base stimuli within a burst (50 Hz).",
-    "Units": "milliseconds"
+    "Units": "ms"
   },
   "pattern2_count": {
     "LongName": "Bursts per train",
-    "Description": "Number of pattern1 units (bursts) in one pattern2 unit (the train)."
+    "Description": "Number of pattern1 units (bursts) in one pattern2 unit (the train).",
+    "Format": "number"
   },
   "pattern2_interval": {
     "LongName": "Inter-burst interval",
     "Description": "Onset-to-onset interval between bursts (5 Hz).",
-    "Units": "milliseconds"
+    "Units": "ms"
   },
   "pattern3_count": {
     "LongName": "Trains in protocol",
-    "Description": "Number of pattern2 units (trains) in the full protocol."
+    "Description": "Number of pattern2 units (trains) in the full protocol.",
+    "Format": "number"
   },
   "pattern3_interval": {
     "LongName": "Train period",
     "Description": "Onset-to-onset interval between trains; includes the inter-train off time (2 s on + 8 s off = 10 s).",
-    "Units": "milliseconds"
+    "Units": "ms"
   },
   "intensity_reference": {
     "LongName": "Intensity reference",

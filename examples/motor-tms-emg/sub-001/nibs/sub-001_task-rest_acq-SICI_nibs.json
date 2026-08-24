@@ -4,13 +4,15 @@
     "emg"
   ],
   "IntendedFor": "bids::sub-001/emg/sub-001_task-rest_acq-SICI_events.tsv",
-  "StimulatorSet": {
-    "StimulatorID": "Magstim",
-    "Manufacturer": "Magstim",
-    "ManufacturerModelName": "BiStim^2",
-    "ManufacturerSerialNumber": "3234-00",
-    "SoftwareVersion": "n/a"
-  },
+  "StimulatorSet": [
+    {
+      "StimulatorID": "Magstim",
+      "Manufacturer": "Magstim",
+      "ManufacturersModelName": "BiStim^2",
+      "DeviceSerialNumber": "3234-00",
+      "SoftwareVersions": "n/a"
+    }
+  ],
   "ElementSet": [
     {
       "ElementID": "Coil_1",
@@ -31,7 +33,7 @@
       "IntensityID": "rMT",
       "Value": 50,
       "Units": "% Maximum Stimulator Output",
-      "Type": "resting_motor",
+      "IntensityType": "resting_motor",
       "Criterion": "MEP amplitude >= 50 uV in at least 5 of 10 consecutive trials",
       "Algorithm": "relative-frequency (Rossini-Rothwell)",
       "MeasurementMethod": "EMG MEP from right first dorsal interosseous"
@@ -40,7 +42,7 @@
       "IntensityID": "1mV",
       "Value": 58,
       "Units": "% Maximum Stimulator Output",
-      "Type": "target_MEP",
+      "IntensityType": "target_MEP",
       "Criterion": "stimulator output evoking a ~1 mV peak-to-peak MEP",
       "Algorithm": "manual titration",
       "MeasurementMethod": "EMG MEP from right first dorsal interosseous"
@@ -99,16 +101,17 @@
   "stimulus_duration": {
     "LongName": "Stimulus duration",
     "Description": "Pulse width (contiguous non-zero current through the coil).",
-    "Units": "microseconds"
+    "Units": "us"
   },
   "pattern1_count": {
     "LongName": "Stimuli in pattern1",
-    "Description": "Number of base stimuli in one pattern1 unit."
+    "Description": "Number of base stimuli in one pattern1 unit.",
+    "Format": "number"
   },
   "pattern1_interval": {
     "LongName": "Interval in pattern1",
     "Description": "Onset-to-onset interval between consecutive base stimuli.",
-    "Units": "milliseconds"
+    "Units": "ms"
   },
   "pattern1_intensity": {
     "LongName": "Per-pulse intensity",

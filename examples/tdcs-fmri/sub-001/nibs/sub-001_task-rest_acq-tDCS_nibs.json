@@ -3,13 +3,15 @@
   "ConcurrentModalities": [
     "none"
   ],
-  "StimulatorSet": {
-    "StimulatorID": "neuroConn",
-    "Manufacturer": "neuroCare",
-    "ManufacturerModelName": "DC-Stimulator Plus",
-    "ManufacturerSerialNumber": "DC-0001",
-    "SoftwareVersion": "n/a"
-  },
+  "StimulatorSet": [
+    {
+      "StimulatorID": "neuroConn",
+      "Manufacturer": "neuroCare",
+      "ManufacturersModelName": "DC-Stimulator Plus",
+      "DeviceSerialNumber": "DC-0001",
+      "SoftwareVersions": "n/a"
+    }
+  ],
   "ElementSet": [
     {
       "ElementID": "anode",
@@ -80,17 +82,17 @@
   "stimulus_duration": {
     "LongName": "Stimulus duration",
     "Description": "Duration of the constant-current block (excluding nothing; ramps are part of it).",
-    "Units": "second"
+    "Units": "s"
   },
   "ramp_up": {
     "LongName": "Ramp up",
     "Description": "Duration of the linear current ramp at the start of the block.",
-    "Units": "second"
+    "Units": "s"
   },
   "ramp_down": {
     "LongName": "Ramp down",
     "Description": "Duration of the linear current ramp at the end of the block.",
-    "Units": "second"
+    "Units": "s"
   },
   "intensity_reference": {
     "LongName": "Intensity reference",
